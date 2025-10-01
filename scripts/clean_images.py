@@ -1,13 +1,17 @@
 import re
 
-def clean_image_lines(input_file, output_file):
+def clean_image_lines(input_file, output_file : str = None):
     """
     Removes all textual traces of Notion images
     
     Args:
         input_file : path of the source Markdown file
-        output_file : path of the cleaned Markdown file
+        output_file : path of the cleaned Markdown file 
+            If None, it overwrites the original file.
     """
+    if output_file is None:
+        output_file = input_file
+
     pattern = re.compile(r'!\[.*?\]\(([^)]+)\)', re.IGNORECASE)
 
     with open(input_file, 'r', encoding='utf-8') as f:

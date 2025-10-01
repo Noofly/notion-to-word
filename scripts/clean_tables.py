@@ -1,6 +1,6 @@
 import re
 
-def clean_markdown_tables(input_file, output_file):
+def clean_markdown_tables(input_file, output_file : str = None):
     """
     Cleans the Markdown tables for Pandoc.
     - Removes useless spaces around pipes
@@ -9,8 +9,12 @@ def clean_markdown_tables(input_file, output_file):
 
     Args:
         input_file : path to the Markdown file to clean
-        output_file: path where cleaned Markdown will be saved
+        output_file: path where cleaned Markdown will be saved 
+            If None, it overwrites the original file.
     """
+    if output_file is None:
+        output_file = input_file
+
     # Read the input file
     with open(input_file, "r", encoding="utf-8") as f:
         lines = f.read().split("\n")
@@ -50,7 +54,7 @@ def clean_markdown_tables(input_file, output_file):
     # write in UTF-8
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("\n".join(new_lines))
-    print(f"File cleaned, encoded with UTF-8 : {output_file}")
+    print(f"[Table] File tables cleaned : {output_file}")
 
 if __name__ == '__main__':
     clean_markdown_tables("ressources/notion_export/example.md", "ressources/notion_export/example_table_cleaned_utf8.md")
