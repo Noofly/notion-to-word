@@ -4,6 +4,8 @@ from .clean_tables import *
 from .convert_encoding import *
 from .run_pandoc import *
 from .table_styler import *
+from .merge_files import *
+from .clean_links import *
 
 # Explicitly list all functions for top-level import
 __all__ = []
@@ -12,7 +14,7 @@ __all__ = []
 import sys
 import types
 
-for module_name in ['clean_images', 'clean_tables', 'convert_encoding', 'run_pandoc', 'table_styler']:
+for module_name in ['clean_images', 'clean_tables', 'convert_encoding', 'run_pandoc', 'table_styler', 'clean_links', 'merge_files']:
     module = sys.modules[__name__].__dict__.get(module_name)
     if module is None:
         # import module
